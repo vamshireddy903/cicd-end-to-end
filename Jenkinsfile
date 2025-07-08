@@ -1,5 +1,4 @@
 pipeline {
-    
     agent any 
     
     environment {
@@ -20,15 +19,15 @@ pipeline {
         stage('Build Docker') {
             steps {
                 script {
-                    sh '''
+                    sh """
                     echo "🛠️ Building Docker Image..."
                     docker build -t $DOCKER_IMAGE .
-                    '''
+                    """
                 }
             }
         }
 
-         stage("Push to Docker Hub") {
+        stage("Push to Docker Hub") {
             steps {
                 echo "📦 Pushing the image to Docker Hub"
                 withCredentials([usernamePassword(
